@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Main Dimen -->
+    <dimen name="main_search_h">40dp</dimen>
+
+
+    <!-- Movie Item Card Dimen -->
+    <dimen name="item_movie_image_w">80dp</dimen>
+    <dimen name="item_movie_image_h">100dp</dimen>
+
+    <dimen name="item_left_margin">6dp</dimen>
+    <dimen name="item_top_margin">4dp</dimen>
+    <dimen name="item_text_size">14sp</dimen>
+
+
+
+</resources>

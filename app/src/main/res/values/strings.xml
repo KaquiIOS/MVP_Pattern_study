@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">BoostCampMVP</string>
+
+    <!-- Main String -->
+    <string name="main_search_btn">검색</string>
+    <string name="main_search_hint_edt">영화를 검색해보세요 !</string>
+    <string name="main_search_wait_prg">영화를 검색중입니다 !</string>
+    <string name="main_search_no_result">검색 결과가 없습니다 !</string>
+
+
+    <!-- Naver Movie API Key -->
+    <string name="naver_movie_key_id">----</string>
+    <string name="naver_movie_key_pw">----</string>
+
+
+</resources>
