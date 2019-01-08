@@ -7,6 +7,7 @@ import android.widget.ImageView;
 
 import com.example.boostcampmvp.R;
 import com.example.boostcampmvp.data.Movie;
+import com.example.boostcampmvp.data.MovieBuilder;
 import com.example.boostcampmvp.data.MovieSource;
 
 import org.json.JSONArray;
@@ -107,17 +108,21 @@ public class MovieGetAsynTask extends AsyncTask<String, Void, List<Movie>> {
 
             int len = array.length();
 
+            MovieBuilder movieBuilder = new MovieBuilder();
+
             for(int i = 0; i < len; ++i) {
                 JSONObject obj = array.getJSONObject(i);
-                Movie movie = new Movie(
-                        obj.getString("image"),
-                        obj.getString("link"),
-                        obj.getString("title"),
-                        obj.getString("pubDate"),
-                        obj.getString("director"),
-                        obj.getString("actor"),
-                        obj.getDouble("userRating")
-                );
+
+                // 생성 부분을 Builder 로 수정
+                Movie movie = movieBuilder
+                        .setImageURL(obj.getString("image"))
+                        .setLink(obj.getString("link"))
+                        .setTitle(obj.getString("title"))
+                        .setPubDate(obj.getString("pubDate"))
+                        .setDirector(obj.getString("director"))
+                        .setActors(obj.getString("actor"))
+                        .setUserRating(obj.getDouble("userRating"))
+                        .build();
 
                 parseResult.add(movie);
             }
