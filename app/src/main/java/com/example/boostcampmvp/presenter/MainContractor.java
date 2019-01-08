@@ -14,6 +14,8 @@ public interface MainContractor {
 
         void startProgressDialog(String message);
         void endProgressDialog();
+
+        void closeKeypad();
     }
 
     interface Presenter {

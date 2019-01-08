@@ -30,6 +30,9 @@ public class MovieGetAsynTask extends AsyncTask<String, Void, List<Movie>> {
     private static final String METHOD = "GET";
     private static final int TIME_LIMIT = 10;
 
+
+    private static final String MOVIE_ASYN_TASK_TAG = "MOVIE_ASYN_TASK";
+
     private Context context;
     private MovieSource.MovieLoadCallback movieLoadCallback;
 
@@ -74,8 +77,8 @@ public class MovieGetAsynTask extends AsyncTask<String, Void, List<Movie>> {
 
                 return parseJson(sb.toString(), Integer.parseInt(strings[1]));
             } else {
-                Log.e("TEST", conn.getResponseMessage());
-                Log.e("TEST", conn.getResponseCode() + "");
+                Log.e(MOVIE_ASYN_TASK_TAG, conn.getResponseMessage());
+                Log.e(MOVIE_ASYN_TASK_TAG, conn.getResponseCode() + "");
             }
         } catch (Exception e) {
             e.printStackTrace();
