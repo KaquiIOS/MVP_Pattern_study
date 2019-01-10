@@ -20,6 +20,7 @@ import com.example.boostcampmvp.presenter.MainPresenter;
 
 public class MainActivity extends AppCompatActivity implements MainContractor.View {
 
+    // Presenter reference를 가진다
     private MainPresenter mMainPresenter;
     private MovieAdapter mMovieAdapter;
 
@@ -31,14 +32,16 @@ public class MainActivity extends AppCompatActivity implements MainContractor.Vi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Presenter를 등록하고
         mMainPresenter = new MainPresenter();
         mMainPresenter.attachView(this);
 
+        // Adapter도 등록하고
         mMovieAdapter = new MovieAdapter(this);
         mMainPresenter.setMovieAdapterModel(mMovieAdapter);
         mMainPresenter.setMovieAdapterView(mMovieAdapter);
 
-        // Singleton 객체를 매개변수로 넘겨줌
+        // Repository도 등록한다(Singleton 객체를 매개변수로 넘겨줌)
         mMainPresenter.setMovieRepository(MovieResourceRepository.getInstance());
 
         RecyclerView recyclerView = findViewById(R.id.recycler_main_list);
@@ -47,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements MainContractor.Vi
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                // 무한 스크롤 이벤트를 Presenter에 위임
                 if(recyclerView.canScrollVertically(-1))  {
                     mMainPresenter.loadMoreMovies(MainActivity.this, mMovieAdapter.getSize());
                 }

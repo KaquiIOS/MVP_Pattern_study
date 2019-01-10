@@ -36,6 +36,7 @@ public class MovieGetAsynTask extends AsyncTask<String, Void, List<Movie>> {
     private Context context;
     private MovieSource.MovieLoadCallback movieLoadCallback;
 
+    private boolean isEnd = false;
 
     public MovieGetAsynTask(Context context, MovieSource.MovieLoadCallback movieLoadCallback) {
         this.context = context;
@@ -90,7 +91,7 @@ public class MovieGetAsynTask extends AsyncTask<String, Void, List<Movie>> {
     @Override
     protected void onPostExecute(List<Movie> movies) {
         super.onPostExecute(movies);
-        movieLoadCallback.onMovieLoaded(movies);
+        movieLoadCallback.onMovieLoaded(movies, isEnd);
     }
 
     private List<Movie> parseJson(String json, int startPos) {
@@ -105,7 +106,10 @@ public class MovieGetAsynTask extends AsyncTask<String, Void, List<Movie>> {
 
             JSONObject jsonObject = new JSONObject(json);
 
-            if(jsonObject.getInt("total") <= startPos) return parseResult;
+            if(jsonObject.getInt("total") <= startPos) {
+                isEnd = true;
+                return parseResult;
+            }
 
             JSONArray array = jsonObject.getJSONArray("items");
 

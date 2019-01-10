@@ -1,5 +1,10 @@
 package com.example.boostcampmvp.data;
 
+/*
+* MovieBuilder
+* Builder Pattern 을 이용하여 Movie 객체를 생성함
+* this 를 반환해주는 방식을 사용한다
+ */
 public class MovieBuilder {
 
     private String imageURL;

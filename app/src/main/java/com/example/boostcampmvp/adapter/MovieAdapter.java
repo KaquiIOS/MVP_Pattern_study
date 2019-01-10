@@ -19,11 +19,19 @@ import com.example.boostcampmvp.data.Movie;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+* MovieAdapter
+* RecyclerView에서 보여지는 내용을 관리하는 어답터이다
+* Presenter 에서 View 를 한 번 더 거쳐가는 동작을 생략하기 위해서
+* MovieAdapterContractor 를 이용해 Presenter에서 데이터 변경 및 갱신 작업을 수행한다.
+ */
+
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder> implements MovieAdapterContractor.Model, MovieAdapterContractor.View {
 
     private Context context;
     private List<Movie> movieList;
 
+    // ItemClick Event 처리 콜백
     private OnItemClickListener itemClickListener;
 
     public MovieAdapter(Context context) {
@@ -62,6 +70,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder>
         holder.movieRating.setRating((float)(item.getUserRating() / 2));
     }
 
+
+    // Presenter 에서 사용할 내용들
     @Override
     public int getItemCount() {
         return movieList.size();
